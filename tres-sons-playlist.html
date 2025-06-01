@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Playlist Très Sons</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: none;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background: #1e1e1e;
+      margin-bottom: 10px;
+      padding: 15px;
+      border-radius: 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+    }
+    li:hover {
+      background: #2a2a2a;
+    }
+    .icon {
+      font-size: 1.5em;
+      color: #1db954;
+      margin-top: 2px;
+    }
+    .info {
+      display: flex;
+      flex-direction: column;
+    }
+    .artist {
+      font-size: 0.9em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>PLAYLIST TRÈS SONS</h1>
+  <input type="text" id="search" placeholder="Buscar música..."/>
+  <ul id="playlist"></ul>
+
+  <script>
+    const numeroWhatsApp = "5519991747295";
+    const musicas = [
+      { nome: "À Francesa", artista: "Marina Lima" },
+      { nome: "Algo Parecido", artista: "Skank" },
+      { nome: "All Star - Ao Vivo", artista: "Nando Reis" },
+      { nome: "Amor meu grande amor", artista: "Barão Vermelho" },
+      { nome: "Apenas Mais uma de Amor", artista: "Lulu Santos" },
+      { nome: "À Sua Maneira", artista: "Capital Inicial" },
+      { nome: "A Tal Canção Pra Lua - Ao Vivo", artista: "Vitor Kley, Samuel Rosa" },
+      { nome: "Até O Fim - Ao Vivo", artista: "Engenheiros Do Hawaii" },
+      { nome: "Bete Balanço", artista: "Barão Vermelho" },
+      { nome: "Bilhetinho Azul", artista: "Barão Vermelho" },
+      { nome: "Black", artista: "Pearl Jam" },
+      { nome: "Canção Noturna", artista: "Skank" },
+      { nome: "Cigana", artista: "Raça Negra" },
+      { nome: "Ciúme", artista: "Ultraje a Rigor" },
+      { nome: "Codinome Beija-Flor", artista: "Cazuza" },
+      { nome: "Cowboy Fora Da Lei", artista: "Raul Seixas" },
+      { nome: "Dia Especial (Ao Vivo)", artista: "Pouca Vogal" },
+      { nome: "Dois Rios", artista: "Skank" },
+      { nome: "Eduardo E Mônica", artista: "Legião Urbana" },
+      { nome: "Eu Te Devoro", artista: "Djavan" },
+      { nome: "Every Breath You Take", artista: "The Police" },
+      { nome: "Exagerado", artista: "Cazuza" },
+      { nome: "Fácil", artista: "Jota Quest" },
+      { nome: "Faroeste Caboclo", artista: "Legião Urbana" },
+      { nome: "Fátima", artista: "Capital Inicial" },
+      { nome: "Final Feliz", artista: "Jorge Vercillo, Djavan" },
+      { nome: "Garotos II - O Outro Lado", artista: "Leoni" },
+      { nome: "Good Riddance (Time of Your Life)", artista: "Green Day" },
+      { nome: "Gostava Tanto De Você", artista: "Tim Maia" },
+      { nome: "Have You Ever Seen The Rain", artista: "Creedence Clearwater Revival" },
+      { nome: "I Saw You Saying - That You Say That You Saw", artista: "Raimundos" },
+      { nome: "Jackie Tequila", artista: "Skank" },
+      { nome: "Jesus Numa Moto - Ao Vivo", artista: "Sa, Rodrix, Guarabyra" },
+      { nome: "Kiss from a Rose", artista: "Seal" },
+      { nome: "Lanterna Dos Afogados", artista: "Os Paralamas Do Sucesso" },
+      { nome: "Last Kiss", artista: "Pearl Jam" },
+      { nome: "Luz Dos Olhos", artista: "Nando Reis" },
+      { nome: "Maior Abandonado", artista: "Barão Vermelho" },
+      { nome: "Malandragem", artista: "Cássia Eller" },
+      { nome: "Me Chama", artista: "Lobão" },
+      { nome: "Meu Amigo Pedro", artista: "Raul Seixas" },
+      { nome: "Meu Erro", artista: "Os Paralamas Do Sucesso" },
+      { nome: "More Than Words", artista: "Extreme" },
+      { nome: "Música Urbana", artista: "Capital Inicial" },
+      { nome: "O poeta está vivo", artista: "Barão Vermelho" },
+      { nome: "O Que Eu Também Não Entendo", artista: "Jota Quest" },
+      { nome: "O Segundo Sol", artista: "Cássia Eller" },
+      { nome: "Pacato Cidadão - Ao Vivo", artista: "Skank" },
+      { nome: "Por Enquanto - Ao Vivo", artista: "Cássia Eller" },
+      { nome: "Por Que a Gente é Assim?", artista: "Barão Vermelho" },
+      { nome: "Por Você", artista: "Frejat" },
+      { nome: "Pra dizer adeus", artista: "Titãs" },
+      { nome: "Pra Ser Sincero", artista: "Engenheiros Do Hawaii" },
+      { nome: "Primeiros Erros (Chove) - Ao Vivo", artista: "Capital Inicial" },
+      { nome: "Proud Mary", artista: "Creedence Clearwater Revival" },
+      { nome: "Quando Eu Te Encontrar", artista: "Biquini Cavadão" },
+      { nome: "Quase Sem Querer", artista: "Legião Urbana" },
+      { nome: "Resposta", artista: "Skank" },
+      { nome: "Sempre Assim", artista: "Jota Quest" },
+      { nome: "Só Hoje", artista: "Jota Quest" },
+      { nome: "Só Pro Meu Prazer", artista: "Leoni" },
+      { nome: "Tanto (I Want You) - Ao Vivo", artista: "Skank" },
+      { nome: "Tarde Vazia", artista: "Ira!, Samuel Rosa" },
+      { nome: "Tempo Perdido", artista: "Legião Urbana" },
+      { nome: "The Reason", artista: "Hoobastank" },
+      { nome: "Timidez", artista: "Biquini Cavadão" },
+      { nome: "Tudo Que Vai - Ao Vivo", artista: "Capital Inicial" },
+      { nome: "Uma Noite E 1/2", artista: "Marina Lima, Renato Rocketh" },
+      { nome: "Um Dia De Sol", artista: "Papas Da Língua" },
+      { nome: "Unwell", artista: "Matchbox Twenty" },
+      { nome: "Versos Simples - Ao Vivo", artista: "Chimarruts" },
+      { nome: "Você", artista: "Tim Maia" },
+      { nome: "Você Vai Lembrar De Mim", artista: "Nenhum De Nós" },
+      { nome: "Wish You Were Here", artista: "Pink Floyd" },
+      { nome: "You And Me", artista: "Lifehouse" }
+    ].sort((a, b) => a.nome.localeCompare(b.nome));
+
+    const playlist = document.getElementById("playlist");
+    const search = document.getElementById("search");
+
+    function renderList(filtered) {
+      playlist.innerHTML = "";
+      filtered.forEach(musica => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span class="icon"><i class="fa fa-music"></i></span>
+          <div class="info">
+            <strong>${musica.nome}</strong>
+            <span class="artist">${musica.artista}</span>
+          </div>
+        `;
+        li.onclick = () => {
+          const mensagem = `Olá, gostaria de pedir a música: ${musica.nome} - ${musica.artista}`;
+          window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`, "_blank");
+        };
+        playlist.appendChild(li);
+      });
+    }
+
+    search.addEventListener("input", () => {
+      const termo = search.value.toLowerCase();
+      const filtradas = musicas.filter(m =>
+        m.nome.toLowerCase().includes(termo) || m.artista.toLowerCase().includes(termo)
+      );
+      renderList(filtradas);
+    });
+
+    renderList(musicas);
+  </script>
+</body>
+</html>

@@ -63,7 +63,7 @@
   <ul id="playlist"></ul>
 
   <script>
-    const numeroWhatsApp = "5519991747295";
+    const numeroWhatsApp = "5519983530406";
     const musicas = [
       { nome: "À Francesa", artista: "Marina Lima" },
       { nome: "Algo Parecido", artista: "Skank" },
@@ -157,7 +157,7 @@
           </div>
         `;
         li.onclick = () => {
-          const mensagem = `Olá, gostaria de pedir a música: ${musica.nome} - ${musica.artista}`;
+          const mensagem = `Olá, bora tocar aquela?: ${musica.nome} - ${musica.artista}`;
           window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`, "_blank");
         };
         playlist.appendChild(li);
